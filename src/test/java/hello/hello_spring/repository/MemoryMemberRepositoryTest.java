@@ -3,6 +3,7 @@ package hello.hello_spring.repository;
 import hello.hello_spring.domain.Member;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.ObjectAssert;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -12,7 +13,13 @@ import static org.assertj.core.api.Assertions.*;
 
 class MemoryMemberRepositoryTest {
 
-    MemberRepository repository = new MemoryMemberRepository();
+    MemoryMemberRepository repository = new MemoryMemberRepository();
+
+    @AfterEach
+    public void afterEach() {
+
+        repository.clearStore();
+    }
 
     @Test
     public void save() {
