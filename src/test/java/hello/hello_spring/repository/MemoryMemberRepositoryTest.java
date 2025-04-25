@@ -29,7 +29,7 @@ class MemoryMemberRepositoryTest {
         repository.save(member);
 
         Member result = repository.findById(member.getId()).get();
-        assertThat(member).isEqualTo(result);
+        assertThat(result).isEqualTo(member);
     }
 
     @Test
