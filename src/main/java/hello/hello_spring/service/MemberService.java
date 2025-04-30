@@ -25,18 +25,9 @@ public class MemberService {
      */
     public Long join(Member member) {
         //중복 이름이 있는 중복 회원
-
-        long start = System.currentTimeMillis();
-
-        try{
-            validateDuplicateMember(member);
-            memberRepository.save(member);
-            return member.getId();
-        } finally {
-            long finish = System.currentTimeMillis();
-            long timeMs = finish-start;
-            System.out.println("join : " + timeMs + "ms");
-        }
+        validateDuplicateMember(member);
+        memberRepository.save(member);
+        return member.getId();
     }
 
     /**
@@ -56,15 +47,7 @@ public class MemberService {
      */
     public List<Member> findMembers() {
 
-        long start = System.currentTimeMillis();
-
-        try {
-            return memberRepository.findAll();
-        } finally {
-            long finish = System.currentTimeMillis();
-            long timeMs = finish - start;
-            System.out.println("find Members : " + timeMs + "ms");
-        }
+        return memberRepository.findAll();
     }
 
     public Optional<Member> findOne(Long memberId) {
